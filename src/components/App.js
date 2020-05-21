@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TrelloList from './TrelloList';
 import {connect} from 'react-redux';
 import TrelloButton from './TrelloButton'
-import {DragDropContext} from "react-beautiful-dnd";
+import {DragDropContext, Droppable} from "react-beautiful-dnd";
 import {sort} from '../actions'
 import styled from "styled-components"
 
@@ -17,13 +17,13 @@ class App extends Component {
   //reordering of cards
   //reordering logic handeled by reducer
   onDragEnd = (result) => {
-    const {destination, source, draggableId} = result;
+    const {destination, source, draggableId, type} = result;
 
     if(!destination){ //not in a valid droppable location
       return;
     }
 
-    this.props.dispatch(sort(source.droppableId, destination.droppableId,source.index, destination.index, draggableId));
+    this.props.dispatch(sort(source.droppableId, destination.droppableId,source.index, destination.index, draggableId, type));
 
 
   }
@@ -34,12 +34,17 @@ class App extends Component {
       <DragDropContext onDragEnd= {this.onDragEnd} >
         <div className="App">
           <h2> Getting there</h2>
-          <AppContainer>
-            {lists.map(list=> (
-              <TrelloList listID = {list.id} key={list.id} title= {list.title} cards = {list.cards}/>
-            ))}
-            <TrelloButton list />
-          </AppContainer>
+          <Droppable droppableId = "all-lists" direction = "horizontal" type= "list">
+            {(provided) => (
+              <AppContainer {...provided.droppableProps} ref={provided.innerRef} >
+                {lists.map((list,index)=> (
+                  <TrelloList listID = {list.id} index = {index} key={list.id} title= {list.title} cards = {list.cards}/>
+                ))}
+                {provided.placeholder}
+                <TrelloButton list />
+              </AppContainer>
+            )}
+          </Droppable>
         </div>
       </DragDropContext>
     );
