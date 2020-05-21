@@ -21,6 +21,7 @@ class TrelloButton extends Component {
     }
     closeForm = () => {
         this.setState ({
+            text: "",
             formOpen: false
         })
     }
@@ -36,7 +37,7 @@ class TrelloButton extends Component {
         const {text} = this.state;
         if (text) {
             this.setState ({
-                text: ""
+                text: "",
             })
             dispatch(addList(text));
         }
@@ -48,11 +49,18 @@ class TrelloButton extends Component {
         const {text} = this.state;
         if (text) {
             this.setState ({
-                text: ""
+                text: "",
             })
             dispatch(addCard(listID,text));
         }
         return;
+    }
+    handleKeyPress = (event) => {
+        const {list} = this.props;
+
+        if(event.key === 'Enter'){
+            list ? this.handleAddList() : this.handleAddCard()   
+        }
     }
 
     renderAddButton = () => {
@@ -96,6 +104,7 @@ class TrelloButton extends Component {
                     <TextareaAutosize
                     placeholder = {textPlaceholder}
                     autoFocus
+                    onKeyPress={this.handleKeyPress}
                     onBlur = {this.closeForm}
                     value ={this.state.text}
                     onChange = {this.handleInputChange}
@@ -110,12 +119,12 @@ class TrelloButton extends Component {
                 </Card>
                 <div style={styles.formButton}>
                     <Button 
-                    onMouseDown = {list ? this.handleAddList : this.handleAddCard } 
+                    onMouseDown = {list ? this.handleAddList : this.handleAddCard }
                     variant = "contained" 
                     style={{color:"white", backgroundColor: "#86c232"}}> 
                     {buttonTitle} 
                     </Button>
-                    <Icon style= {{marginLeft: 8, cursor: "pointer"}}>close</Icon>
+                    <Icon onClick = {this.closeForm} style= {{marginLeft: 8, cursor: "pointer"}}>close</Icon>
                 </div>
             </div>
         )

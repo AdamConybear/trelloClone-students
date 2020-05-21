@@ -1,43 +1,47 @@
 import {CONSTANTS} from '../actions'
 
-let listID = 2;
-let cardID = 6;
+let listID = 4;
+let cardID = 4;
 
 const initialState = [
     {
-        title: "Last Episode",
+        title: "Assignments",
         id: `list-${0}`,
         cards: [
             {
                 id: `card-${0}` ,
-                text: "creating a static list and a static card"
-            },
-            {
-                id: `card-${1}`,
-                text: "using material ui and other compontents"
+                text: "first assignment"
             }
         ]
     },
     {
-        title: "Current Episode",
+        title: "Projects",
         id: `list-${1}`,
+        cards: []
+    },
+    {
+        title: "Quizzes",
+        id: `list-${2}`,
         cards: [
             {
-                id: `card-${2}`,
-                text: "create first reducer"
+                id: `card-${1}`,
+                text: "dynamic programming quiz"
             },
+            {
+                id: `card-${2}`,
+                text: "leet code QUIZZES"
+            }
+        ]
+    },
+    {
+        title: "Exams",
+        id: `list-${3}`,
+        cards: [
             {
                 id: `card-${3}`,
-                text: "render many cards"
-            }, 
-            {
-                id: `card-${4}`,
-                text: 'add css changes to index.html'
+                text: "Final Exam MY DUDE"
             },
-            {
-                id: `card-${5}`,
-                text: 'just some extra info'
-            }
+
         ]
     }
 
