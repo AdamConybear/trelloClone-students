@@ -22,6 +22,7 @@ const styles = {
         backgroundColor: '#f3f3f3',
         borderRadius: 3,
         width: 300,
+        height: "100%",
         padding: 8,
         marginRight: 8,
     },

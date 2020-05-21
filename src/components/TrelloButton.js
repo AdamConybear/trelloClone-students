@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Icon from "@material-ui/core/Icon";
 import Card from '@material-ui/core/Card';
 import TextareaAutosize from 'react-textarea-autosize';
+import Button from '@material-ui/core/Button';
 
 
 class TrelloButton extends Component {
@@ -60,7 +61,12 @@ class TrelloButton extends Component {
 
         return (
             <div>
-                <Card>
+                <Card style={{
+                    // overflow: "visible",
+                    minHeight: 80,
+                    minWidth: 272,
+                    padding: '6px 8px 2px'
+                }}>
                     <TextareaAutosize
                     placeholder = {textPlaceholder}
                     autoFocus
@@ -69,12 +75,17 @@ class TrelloButton extends Component {
                     onChange = {this.handleInputChange}
                     style ={{
                         resize: 'none',
+                        overflow: "hidden",
                         width: "100%",
                         outline: "none",
                         border: "none"
                     }}
                     />
                 </Card>
+                <div style={styles.formButton}>
+                    <Button variant = "contained" style={{color:"white", backgroundColor: "#86c232"}}> {buttonTitle} </Button>
+                    <Icon style= {{marginLeft: 8, cursor: "pointer"}}>close</Icon>
+                </div>
             </div>
         )
     }
@@ -95,6 +106,12 @@ const styles = {
         height: 36,
         width: 272,
         paddingLeft: 10,
+    },
+    formButton: {
+        marginTop: 8,
+        display: "flex",
+        alignItems: 'center'
+
     }
 };
 
