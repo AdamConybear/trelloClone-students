@@ -1,5 +1,6 @@
 import React from 'react';
-import TrelloCard from './TrelloCard'
+import TrelloCard from './TrelloCard';
+import TrelloButton from './TrelloButton';
 
 //Each list has a title...
 
@@ -8,6 +9,7 @@ const TrelloList = ({title, cards}) => {
         <div style={styles.container}>
             <h4>{title}</h4>
             {cards.map(card => <TrelloCard key={card.id} text = {card.text}/>)}
+            <TrelloButton />
         </div>
 
     )
