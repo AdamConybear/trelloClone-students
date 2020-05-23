@@ -1,59 +1,79 @@
-import React, { Component } from 'react';
-import TrelloList from './TrelloList';
-import {connect} from 'react-redux';
-import TrelloButton from './TrelloButton'
-import {DragDropContext, Droppable} from "react-beautiful-dnd";
-import {sort} from '../actions'
-import styled from "styled-components"
+import React, { PureComponent } from "react";
+import TrelloList from "./TrelloList";
+import { connect } from "react-redux";
+import TrelloAdd from "./TrelloAdd";
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import styled from "styled-components";
+import { sort } from "../actions";
 
-const AppContainer = styled.div`
+const ListsContainer = styled.div`
   display: flex;
-  flexDirection: row;
-`
+  flex-direction: row;
+`;
 
 
-class App extends Component {
+class App extends PureComponent {
+  onDragEnd = result => {
+    const { destination, source, draggableId, type } = result;
 
-  //reordering of cards
-  //reordering logic handeled by reducer
-  onDragEnd = (result) => {
-    const {destination, source, draggableId, type} = result;
-
-    if(!destination){ //not in a valid droppable location
+    if (!destination) {
       return;
     }
 
-    this.props.dispatch(sort(source.droppableId, destination.droppableId,source.index, destination.index, draggableId, type));
-
-
-  }
+    this.props.dispatch(
+      sort(
+        source.droppableId,
+        destination.droppableId,
+        source.index,
+        destination.index,
+        draggableId,
+        type
+      )
+    );
+  };
 
   render() {
-    const {lists} = this.props;
+    const { lists, listOrder, cards } = this.props;
+
     return (
-      <DragDropContext onDragEnd= {this.onDragEnd} >
-        <div className="App">
-          <h2> Getting there</h2>
-          <Droppable droppableId = "all-lists" direction = "horizontal" type= "list">
-            {(provided) => (
-              <AppContainer {...provided.droppableProps} ref={provided.innerRef} >
-                {lists.map((list,index)=> (
-                  <TrelloList listID = {list.id} index = {index} key={list.id} title= {list.title} cards = {list.cards}/>
-                ))}
-                {provided.placeholder}
-                <TrelloButton list />
-              </AppContainer>
-            )}
-          </Droppable>
-        </div>
+      <DragDropContext onDragEnd={this.onDragEnd}>
+        <h2>Trello for Students</h2>
+        <Droppable droppableId="all-lists" direction="horizontal" type="list">
+          {provided => (
+            <ListsContainer
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {listOrder.map((listID, index) => {
+                const list = lists[listID];
+                if (list) {
+                  const listCards = list.cards.map(cardID => cards[cardID]);
+
+                  return (
+                    <TrelloList
+                      listID={list.id}
+                      key={list.id}
+                      title={list.title}
+                      cards={listCards}
+                      index={index}
+                    />
+                  );
+                }
+              })}
+              {provided.placeholder}
+              <TrelloAdd list />
+            </ListsContainer>
+          )}
+        </Droppable>
       </DragDropContext>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  lists: state.lists
-
-})
+  lists: state.lists,
+  listOrder: state.listOrder,
+  cards: state.cards
+});
 
 export default connect(mapStateToProps)(App);
