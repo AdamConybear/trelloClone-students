@@ -1,120 +1,104 @@
-import {CONSTANTS} from '../actions'
+import { CONSTANTS } from "../actions";
 
-let listID = 4;
-let cardID = 4;
+const initialState = {
+  "list-0": {
+    id: "list-0",
+    cards: ["card-0"],
+    title: "myList",
+  }
+};
 
-const initialState = [
-    {
-        title: "Assignments",
-        id: `list-${0}`,
-        cards: [
-            {
-                id: `card-${0}` ,
-                text: "first assignment"
-            }
-        ]
-    },
-    {
-        title: "Projects",
-        id: `list-${1}`,
+const listsReducer = (state = initialState, action) => {
+  switch (action.type) {
+
+    case CONSTANTS.ADD_LIST: {
+      const {title, id} = action.payload;
+      const newList = {
+        title: title,
+        id: `list-${id}`,
         cards: []
-    },
-    {
-        title: "Quizzes",
-        id: `list-${2}`,
-        cards: [
-            {
-                id: `card-${1}`,
-                text: "dynamic programming quiz"
-            },
-            {
-                id: `card-${2}`,
-                text: "leet code QUIZZES"
-            }
-        ]
-    },
-    {
-        title: "Exams",
-        id: `list-${3}`,
-        cards: [
-            {
-                id: `card-${3}`,
-                text: "Final Exam MY DUDE"
-            },
+      };
 
-        ]
+      const newState = { ...state, [`list-${id}`]: newList };
+
+      return newState;
     }
 
-
-];
-
-const listReducer = (state = initialState,action) => {
-    switch (action.type) {
-
-        case CONSTANTS.ADD_LIST:
-            const newList = {
-                title: action.payload,
-                cards: [],
-                id: `list-${listID}`
-            }
-            listID++;
-            return [...state,newList]; //concatenating new list to what is already in a list
-        case CONSTANTS.ADD_CARD: {
-            const newCard = {
-                text: action.payload.text,
-                id: `card-${cardID}`
-            }
-            cardID++;
-            const newState = state.map(list => {
-                if(list.id === action.payload.listID){
-                    return {
-                        ...list,
-                        cards: [...list.cards, newCard]
-                    };
-                }else{
-                    return list;
-                }
-            })
-            return newState;
-        }
-        case CONSTANTS.DRAG_HAPPENED:
-
-            const {droppableIdStart,
-                droppableIdEnd,
-                droppableIndexStart,
-                droppableIndexEnd,
-                draggableleId,
-                type} = action.payload;
-            const newState = [...state];
-
-            //lists being dragged
-
-            if(type === 'list'){
-                const list = newState.splice(droppableIndexStart,1);
-                newState.splice(droppableIndexEnd, 0, ...list);
-                return newState;
-            }
-
-            if(droppableIdStart === droppableIdEnd){ //same list
-                const list = state.find(list => droppableIdStart === list.id);
-                const card = list.cards.splice(droppableIndexStart, 1);
-                list.cards.splice(droppableIndexEnd,0,...card);
-            }
-
-            //another list
-            if (droppableIdStart !== droppableIdEnd){
-                const listStart = state.find (list => droppableIdStart === list.id); //finds list where card is taken from
-                const card = listStart.cards.splice(droppableIndexStart,1); //takes card from list
-                const listEnd = state.find(list => droppableIdEnd === list.id); //finds list where card is being dropped
-                listEnd.cards.splice(droppableIndexEnd, 0, ...card); // put card in new list
-            }
-
-            return newState;
-
-        default:
-            return state;
+    case CONSTANTS.ADD_CARD: {
+      const { listID, id } = action.payload;
+      const list = state[listID];
+      list.cards.push(`card-${id}`);
+      return { ...state, [listID]: list };
     }
 
-}
+    case CONSTANTS.DRAG_HAPPENED:
+      const {
+        droppableIdStart,
+        droppableIdEnd,
+        droppableIndexEnd,
+        droppableIndexStart,
+        type
+      } = action.payload;
 
-export default listReducer;
+      //handeled by listOrderReducer
+      if (type === "list") {
+        return state;
+      }
+
+      // dropping card into the same list (rearrange same list)
+      if (droppableIdStart === droppableIdEnd) {
+        const list = state[droppableIdStart];
+        const card = list.cards.splice(droppableIndexStart, 1);
+        list.cards.splice(droppableIndexEnd, 0, ...card);
+        return { ...state, [droppableIdStart]: list };
+      }
+
+      // dropping card into a different list
+      if (droppableIdStart !== droppableIdEnd) {
+        // find the list where the drag happened
+        const listStart = state[droppableIdStart];
+        // pull out the card from this list
+        const card = listStart.cards.splice(droppableIndexStart, 1);
+        // find the list where the drag ended
+        const listEnd = state[droppableIdEnd];
+
+        // put the card in the new list
+        listEnd.cards.splice(droppableIndexEnd, 0, ...card);
+        return {
+          ...state,
+          [droppableIdStart]: listStart,
+          [droppableIdEnd]: listEnd
+        };
+      }
+      return state;
+
+    case CONSTANTS.DELETE_CARD: {
+      const { listID, id } = action.payload;
+
+      const list = state[listID];
+      const newCards = list.cards.filter(cardID => cardID !== id);
+
+      return { ...state, [listID]: { ...list, cards: newCards } };
+    }
+
+    case CONSTANTS.EDIT_LIST_TITLE: {
+      const { listID, newTitle } = action.payload;
+
+      const list = state[listID];
+      list.title = newTitle;
+      return { ...state, [listID]: list };
+    }
+
+    case CONSTANTS.DELETE_LIST: {
+      const { listID } = action.payload;
+      const newState = state;
+      delete newState[listID];
+      return newState;
+    }
+
+    default:
+      return state;
+  }
+};
+
+export default listsReducer;

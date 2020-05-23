@@ -1,7 +1,11 @@
-import {combineReducers} from 'redux';
-import listReducer from './listReducer';
+import { combineReducers } from "redux";
+import listsReducer from "./listsReducer";
+import listOrderReducer from "./listOrderReducer"; 
+import cardsReducer from "./cardsReducer";
 
 export default combineReducers({
-    lists: listReducer
+    lists: listsReducer,
+    listOrder: listOrderReducer,
+    cards: cardsReducer
 
 });
