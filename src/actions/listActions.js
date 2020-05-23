@@ -1,11 +1,13 @@
 import { CONSTANTS } from '../actions'
+import {uuid} from "uuidv4";
 
 
 export const addList = (title) => {
-    return {
-        type: CONSTANTS.ADD_LIST,
-        payload: title,
-    };
+  const id =  uuid();
+  return {
+      type: CONSTANTS.ADD_LIST,
+      payload: {title, id},
+  };
 };
 
 export const sort = (
@@ -32,19 +34,14 @@ export const sort = (
 export const editTitle = (listID, newTitle) => {
     return {
       type: CONSTANTS.EDIT_LIST_TITLE,
-      payload: {
-        listID,
-        newTitle
-      }
+      payload: {listID,newTitle}
     };
 };
   
 export const deleteList = listID => {
     return {
       type: CONSTANTS.DELETE_LIST,
-      payload: {
-        listID
-      }
+      payload: {listID}
     };
 };
   
