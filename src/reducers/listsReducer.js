@@ -5,14 +5,14 @@ const initialState = {
     id: "list-0",
     cards: ["card-0"],
     title: "myList",
+    class: "class-0"
   }
 };
 
 const listsReducer = (state = initialState, action) => {
   switch (action.type) {
-
     case CONSTANTS.ADD_LIST: {
-      const {title, id} = action.payload;
+      const { title, id } = action.payload;
       const newList = {
         title: title,
         id: `list-${id}`,
@@ -37,15 +37,16 @@ const listsReducer = (state = initialState, action) => {
         droppableIdEnd,
         droppableIndexEnd,
         droppableIndexStart,
+
         type
       } = action.payload;
 
-      //handeled by listOrderReducer
+      // draggin lists around - the listOrderReducer should handle this
       if (type === "list") {
         return state;
       }
 
-      // dropping card into the same list (rearrange same list)
+      // in the same list
       if (droppableIdStart === droppableIdEnd) {
         const list = state[droppableIdStart];
         const card = list.cards.splice(droppableIndexStart, 1);
@@ -53,7 +54,7 @@ const listsReducer = (state = initialState, action) => {
         return { ...state, [droppableIdStart]: list };
       }
 
-      // dropping card into a different list
+      // other list
       if (droppableIdStart !== droppableIdEnd) {
         // find the list where the drag happened
         const listStart = state[droppableIdStart];
