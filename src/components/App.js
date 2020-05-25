@@ -1,79 +1,11 @@
 import React, { PureComponent } from "react";
-import TrelloList from "./TrelloList";
-import { connect } from "react-redux";
-import TrelloAdd from "./TrelloAdd";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import styled from "styled-components";
-import { sort } from "../actions";
-
-const ListsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
+import Routes from "../routes";
 
 
 class App extends PureComponent {
-  onDragEnd = result => {
-    const { destination, source, draggableId, type } = result;
-
-    if (!destination) {
-      return;
-    }
-
-    this.props.dispatch(
-      sort(
-        source.droppableId,
-        destination.droppableId,
-        source.index,
-        destination.index,
-        draggableId,
-        type
-      )
-    );
-  };
-
   render() {
-    const { lists, listOrder, cards } = this.props;
-
-    return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
-        <h2>Trello for Students</h2>
-        <Droppable droppableId="all-lists" direction="horizontal" type="list">
-          {provided => (
-            <ListsContainer
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
-              {listOrder.map((listID, index) => {
-                const list = lists[listID];
-                if (list) {
-                  const listCards = list.cards.map(cardID => cards[cardID]);
-
-                  return (
-                    <TrelloList
-                      listID={list.id}
-                      key={list.id}
-                      title={list.title}
-                      cards={listCards}
-                      index={index}
-                    />
-                  );
-                }
-              })}
-              {provided.placeholder}
-              <TrelloAdd list />
-            </ListsContainer>
-          )}
-        </Droppable>
-      </DragDropContext>
-    );
+    return <Routes />;
   }
 }
 
-const mapStateToProps = state => ({
-  lists: state.lists,
-  listOrder: state.listOrder,
-  cards: state.cards
-});
-
-export default connect(mapStateToProps)(App);
+export default App;
