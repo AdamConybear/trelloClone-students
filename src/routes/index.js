@@ -1,6 +1,6 @@
 import React from "react";
 import { HashRouter as Router, Route } from "react-router-dom";
-import TrelloBoard from "../components/TrelloBoard";
+import TrelloClass from "../components/TrelloClass";
 import Home from "../components/Home";
 
 const AppRouter = () => {
@@ -8,7 +8,7 @@ const AppRouter = () => {
     <Router>
       <div>
         <Route path="/" exact component={Home} />
-        <Route path="/:classID" component={TrelloBoard} />
+        <Route path="/:classID" component={TrelloClass} />
       </div>
     </Router>
   );
