@@ -5,7 +5,7 @@ import Textarea from "react-textarea-autosize";
 import Card from "@material-ui/core/Card";
 
 const Container = styled.div`
-  width: 284px;
+  min-width: 284px;
   margin-bottom: 8px;
 `;
 
@@ -34,14 +34,11 @@ const StyledIcon = styled(Icon)`
   cursor: pointer;
 `;
 
-
 const TrelloForm = React.memo(
   ({ list, text = "", onChange, closeForm, children }) => {
     const placeholder = list
       ? "Enter list title..."
       : "Enter a title for this card...";
-
-    
 
     return (
       <Container>

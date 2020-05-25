@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import Icon from "@material-ui/core/Icon";
 import TrelloButton from "./TrelloButton";
 import { connect } from "react-redux";
@@ -7,7 +7,7 @@ import styled from "styled-components";
 import TrelloForm from "./TrelloForm";
 import TrelloOpenForm from "./TrelloOpenForm";
 
-class TrelloAdd extends PureComponent {
+class TrelloAdd extends React.PureComponent {
   state = {
     formOpen: false,
     text: ""
@@ -56,8 +56,6 @@ class TrelloAdd extends PureComponent {
       dispatch(addCard(listID, text));
     }
   };
-
-
 
   renderOpenForm = () => {
     const { list } = this.props;
