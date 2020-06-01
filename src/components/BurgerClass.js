@@ -5,7 +5,7 @@ import Icon from "@material-ui/core/Icon";
 import { connect } from "react-redux";
 
 const StyledInput = styled.input`
-  width: 80%;
+  width: 100%;
   border: none;
   outline-color: teal;
   border-radius: 3px;
@@ -16,17 +16,24 @@ const StyledInput = styled.input`
 
 const DeleteButton = styled(Icon)`
   position: absolute;
-//   display: none;
+//   display: inline-block;
   right: 35px;
   opacity: 0.5;
+  margin-top: 3px;
   cursor: pointer;
   &:hover {
     opacity: 0.8;
   }
+  
 `;
 
-const IndivClass = styled.li`
-
+const TitleClass = styled.div`
+    max-width: 220px;
+    font-size: 16px;
+    // display: inline;
+    // margin-right:20px
+    float: left;
+    margin-top: 5px;
 `;
 
 
@@ -78,14 +85,14 @@ const BurgerClass = ({ title, classID, dispatch }) => {
             { isEditing ? (renderEditInput()) : 
             (
             <ul>
-                <li style={{fontSize: 16}}>
-                    <span onClick={() => setIsEditing(true)}>
+                <li>
+                    <TitleClass onClick={() => setIsEditing(true)}>
                         {classTitle}
-                    </span>
-                    <DeleteButton style={{fontSize: 20}} onClick={handleDeleteClass}>
+                    </TitleClass>
+                    <DeleteButton style={{fontSize: 20, float: 'right'}} onClick={handleDeleteClass}>
                         delete
-                    </DeleteButton>
-                
+                    </DeleteButton>                    
+
                 </li>
             </ul>
             )}

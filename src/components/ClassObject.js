@@ -10,9 +10,9 @@ const Outline = styled.div`
   background: #f0ead6;
   padding: 10px;
   margin: 8px;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   border-radius: 3px;
   box-shadow: 0 2px 4px black;
@@ -32,7 +32,7 @@ const Title = styled.h4`
   color: black;
   font-size: 24px;
   align-self: center
-  word-wrap: break-word;
+  // word-wrap: break-word;
 `;
 
 const Due = styled.div`

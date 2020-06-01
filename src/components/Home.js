@@ -175,6 +175,7 @@ const Home = ({ classes, classOrder, dispatch }) => {
             value={newClassTitle}
             placeholder="Add a class title..."
             type="text"
+            maxLength="60"
             />
         </form>
       </div>
