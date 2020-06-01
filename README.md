@@ -9,3 +9,4 @@
 - Material-ui for all icons
 - styled-components for CSS like tags
 - react-textarea-autosize for user entered text input
+- react-burger-menu for a dynamic sidebar
