@@ -68,6 +68,15 @@ const classesReducer = (state = initialState, action) => {
       return newState;
     }
 
+
+    case CONSTANTS.EDIT_CLASS_TITLE: {
+      const { classID, newTitle } = action.payload;
+
+      const c = state[classID];
+      c.title = newTitle;
+      return { ...state, [classID]: c };
+    }
+
     default:
       return state;
   }

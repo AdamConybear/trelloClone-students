@@ -22,3 +22,13 @@ export const deleteClass = (classID) => {
     payload: { classID }
   };
 };
+
+export const editClassTitle = (classID, newTitle) => {
+  return {
+    type: CONSTANTS.EDIT_CLASS_TITLE,
+    payload: {
+      classID,
+      newTitle
+    }
+  };
+};

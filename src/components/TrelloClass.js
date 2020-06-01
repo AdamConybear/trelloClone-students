@@ -12,8 +12,8 @@ const ListsContainer = styled.div`
   flex-direction: row;
 `;
 
-
 class TrelloClass extends PureComponent {
+
   componentDidMount() {
     // set active trello class here
     const { classID } = this.props.match.params;

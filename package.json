@@ -1,6 +1,5 @@
 {
-  "homepage": "http://selfdevtv.github.io/trello-clone",
-  "name": "trello-clone",
+  "name": "trelloclone-students",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,6 +9,7 @@
     "npm": "^6.8.0",
     "react": "^16.8.3",
     "react-beautiful-dnd": "^10.1.0",
+    "react-burger-menu": "^2.6.13",
     "react-dom": "^16.8.3",
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
