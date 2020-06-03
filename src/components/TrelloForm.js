@@ -14,6 +14,11 @@ const StyledCard = styled(Card)`
   padding: 6px 8px 2px;
 `;
 
+const BigCard = styled.div`
+
+  // padding: 6px 8px 2px;
+`;
+
 const StyledTextArea = styled(Textarea)`
   resize: none;
   width: 100%;
@@ -35,28 +40,101 @@ const StyledIcon = styled(Icon)`
 `;
 
 const TrelloForm = React.memo(
-  ({ list, text = "", onChange, closeForm, children }) => {
-    const placeholder = list
-      ? "Enter list title..."
-      : "Enter a title for this card...";
+  ({ list, text = "", onTextChange, closeForm, children }) => {
+    // const placeholder = list
+    //   ? "Enter list title..."
+    //   : "Enter a title for this card...";
+    // const isList = list ? true : false;
 
-    return (
-      <Container>
-        <StyledCard>
-          <StyledTextArea
-            placeholder={placeholder}
-            autoFocus
-            value={text}
-            onChange={e => onChange(e)}
-            onBlur={closeForm}
-          />
-        </StyledCard>
-        <ButtonContainer>
-          {children}
-          <StyledIcon onMouseDown={closeForm}>close</StyledIcon>
-        </ButtonContainer>
-      </Container>
-    );
+
+    const renderFormList =() => {
+      console.log("opening list")
+      return (
+        <Container>
+          <StyledCard>
+            <StyledTextArea
+              placeholder="Enter list title..."
+              autoFocus
+              value={text}
+              onChange={e => onTextChange(e)}
+              onBlur={closeForm}
+            />
+          </StyledCard>
+          <ButtonContainer>
+            {children}
+            <StyledIcon onMouseDown={closeForm}>close</StyledIcon>
+          </ButtonContainer>
+        </Container>
+      );
+
+
+
+    };
+
+    const renderFormCard = () => {
+      console.log("opening card");
+      return (
+        <Container>
+          <StyledCard>
+            <StyledTextArea
+              placeholder="Enter a title for this card..."
+              autoFocus
+              value={text}
+              onChange={e => onTextChange(e)}
+              onBlur={closeForm}
+            />
+          </StyledCard>
+          <ButtonContainer>
+            {children}
+            <StyledIcon onMouseDown={closeForm}>close</StyledIcon>
+          </ButtonContainer>
+        </Container>
+      );
+    };
+
+
+    return list ? renderFormList() : renderFormCard();
+
+    // return list ? (
+    //   <Container>
+    //     <StyledCard>
+    //       <StyledTextArea
+    //         placeholder={placeholder}
+    //         autoFocus
+    //         value={text}
+    //         onChange={e => onTextChange(e)}
+    //         onBlur={closeForm}
+    //       />
+    //     </StyledCard>
+    //     <ButtonContainer>
+    //       {children}
+    //       <StyledIcon onMouseDown={closeForm}>close</StyledIcon>
+    //     </ButtonContainer>
+    //   </Container>
+    // ) : (
+    //   <Container>
+    //     <StyledCard>
+    //       <StyledTextArea
+    //         placeholder={placeholder}
+    //         autoFocus
+    //         value={text}
+    //         onChange={e => onTextChange(e)}
+    //         onBlur={closeForm}
+    //       />
+    //       <StyledDateArea
+    //         placeholder="Enter Due Date..."
+    //         autoFocus
+    //         value={date}
+    //         onChange={e => onDateChange(e)}
+    //         onBlur={closeForm}
+    //       />
+    //     </StyledCard>
+    //     <ButtonContainer>
+    //       {children}
+    //       <StyledIcon onMouseDown={closeForm}>close</StyledIcon>
+    //     </ButtonContainer>
+    //   </Container>
+    // );
   }
 );
 
