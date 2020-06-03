@@ -9,7 +9,6 @@ import Store from "../store";
 import { slide as Menu } from 'react-burger-menu';
 import "./css/main.css";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// import Icon from "@material-ui/core/Icon";
 import BurgerClass from "./BurgerClass"
 
 const Thumbnails = styled.div`

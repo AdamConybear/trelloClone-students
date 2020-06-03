@@ -78,8 +78,6 @@ const BurgerClass = ({ title, classID, dispatch }) => {
         dispatch(editClassTitle(classID, classTitle));
       };
 
-
-
     return (
         <div>
             { isEditing ? (renderEditInput()) : 
@@ -92,19 +90,11 @@ const BurgerClass = ({ title, classID, dispatch }) => {
                     <DeleteButton style={{fontSize: 20, float: 'right'}} onClick={handleDeleteClass}>
                         delete
                     </DeleteButton>                    
-
                 </li>
             </ul>
             )}
         </div>
-        
-
-
     );
-
-
-
-
 };
 
 

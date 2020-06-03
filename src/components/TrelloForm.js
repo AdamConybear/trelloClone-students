@@ -14,10 +14,6 @@ const StyledCard = styled(Card)`
   padding: 6px 8px 2px;
 `;
 
-const BigCard = styled.div`
-
-  // padding: 6px 8px 2px;
-`;
 
 const StyledTextArea = styled(Textarea)`
   resize: none;
