@@ -1,5 +1,5 @@
 import { CONSTANTS } from "../actions";
-import uuid from "uuidv4";
+// import uuid from "uuidv4";
 
 // console.log(uuid());
 
@@ -13,7 +13,7 @@ const classOrderReducer = (state = initialState, action) => {
     case CONSTANTS.DELETE_CLASS: {
       const { classID } = action.payload;
       // const newState = state;
-      const c = state[classID];
+      // const c = state[classID];
       // let count= 0;
       // state.forEach(element => {if (element.id === classID){count++;}});
       // newState.splice(count, 1);

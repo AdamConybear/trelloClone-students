@@ -17,9 +17,9 @@ const ListContainer = styled.div`
 `;
 
 const StyledInput = styled.input`
-  width: 100%;
+  width: 96%;
   border: none;
-  outline-color: blue;
+  outline-color: teal;
   border-radius: 3px;
   margin-bottom: 3px;
   padding: 5px;

@@ -52,7 +52,7 @@ class TrelloAdd extends React.PureComponent {
   handleAddCard = () => {
     const { dispatch, listID } = this.props;
     const { text } = this.state;
-    const currentDate = moment().format('MMMM d yyyy');
+    const currentDate = moment().format();
     // console.log(currentDate);
   
 
@@ -66,7 +66,7 @@ class TrelloAdd extends React.PureComponent {
   };
 
   render() {
-    const { text, date } = this.state;
+    const { text } = this.state;
     const { list } = this.props;
     // console.log(list);
     return this.state.formOpen ? (

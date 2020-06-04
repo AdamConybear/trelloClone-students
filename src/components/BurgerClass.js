@@ -16,7 +16,6 @@ const StyledInput = styled.input`
 
 const DeleteButton = styled(Icon)`
   position: absolute;
-//   display: inline-block;
   right: 35px;
   opacity: 0.5;
   margin-top: 3px;
@@ -30,8 +29,6 @@ const DeleteButton = styled(Icon)`
 const TitleClass = styled.div`
     max-width: 220px;
     font-size: 16px;
-    // display: inline;
-    // margin-right:20px
     float: left;
     margin-top: 5px;
 `;
@@ -43,7 +40,6 @@ const BurgerClass = ({ title, classID, dispatch }) => {
     const [classTitle, setClassTitle] = useState(title);
 
     const handleDeleteClass = () => {
-        // const {classID} = this.props;
         console.log("class being deleted has id: " + classID);
         dispatch(editClassTitle(classID, "deleted")); //fake deletes it
     };

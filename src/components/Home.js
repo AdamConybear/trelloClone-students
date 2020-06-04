@@ -9,7 +9,8 @@ import Store from "../store";
 import { slide as Menu } from 'react-burger-menu';
 import "./css/main.css";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import BurgerClass from "./BurgerClass"
+import BurgerClass from "./BurgerClass";
+import moment from "moment";
 
 const Thumbnails = styled.div`
   flex: 1;
@@ -80,22 +81,13 @@ const ClearButton = styled(Button) `
 
 `;
 
-const StyledInput = styled.input`
-  width: 100%;
-  border: none;
-  outline-color: teal;
-  border-radius: 3px;
-  margin-bottom: 3px;
-  padding: 5px;
-`;
-
 
 //shows all classes, import and add classes here
-const Home = ({ classes, classOrder, dispatch }) => {
+const Home = ({ classes, classOrder, lists, cards, dispatch }) => {
 
   const d = new Date();
   const [newClassTitle, setNewClassTitle] = useState("");
-  const [newDelete, setDelete] = useState("");
+  // const [newDelete, setDelete] = useState("");
   const [showAdd, setShowAdd] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
 
@@ -193,8 +185,33 @@ const Home = ({ classes, classOrder, dispatch }) => {
   };
   
   const renderClasses = () => {
-    return classOrder.map(classID => {
+    return classOrder.map((classID) => {
       const c = classes[classID];
+      let nearestDate;
+      //getting next due date for each class
+      if(c.title !== "deleted"){
+        const listOrder = c.lists;
+        let count = 0; // allows me to set first date as the nearest date
+        listOrder.map(listID=>{
+          const l = lists[listID];
+          if (l){
+            const listCards = l.cards.map(cardID => cards[cardID]);
+            listCards.map(card => {
+              console.log("date: " + card.date);
+              if (count === 0){ //initialize nearest Date to the first card,
+                nearestDate = card.date;
+                count++;
+              }else{
+                if (card.date < nearestDate){
+                  nearestDate = card.date;
+                }
+              }
+            });
+          }
+        });
+        console.log("next date in the entire class is: " + nearestDate);
+      }
+      
       if (c.title !== "deleted"){
         return (
           <Link
@@ -202,11 +219,10 @@ const Home = ({ classes, classOrder, dispatch }) => {
             to={`/${c.id}`}
             style={{ textDecoration: "none"}}
           >
-            <ClassObject classID = {classID} {...c} />
+            <ClassObject minDate={nearestDate} classID = {classID} {...c} />
           </Link>
         );
       }
-      // count++;
     });
   };
 
@@ -219,7 +235,6 @@ const Home = ({ classes, classOrder, dispatch }) => {
           <DateTag>Current Date: {d.getMonth() + 1}/{d.getDate()}</DateTag>
         </div>
         <Thumbnails>{renderClasses()}</Thumbnails>
-        {/* {renderCreateClass()} */}
       </HomeContainer>
 
     </div>
@@ -228,7 +243,9 @@ const Home = ({ classes, classOrder, dispatch }) => {
 
 const mapStateToProps = state => ({
   classes: state.classes,
-  classOrder: state.classOrder
+  classOrder: state.classOrder,
+  lists: state.lists,
+  cards: state.cards,
 });
 
 

@@ -20,14 +20,15 @@ import moment from "moment";
 
 const TrelloDatePicker = ({ date, listID, id, dispatch }) => {
     const [cardDate, setDate] = useState(moment(date).toDate());
-    const [datePickerOpen, setDatePickerOpen] = useState(false);
+    // const [datePickerOpen, setDatePickerOpen] = useState(false);
 
     const handleChange = (newDate) => {
         setDate(newDate);
         // console.log(date);
-        // console.log("new date: " + cardDate);
+        // console.log("new date: " + newDate);
         
         dispatch(editCardDate(id,listID,newDate));
+        // console.log("date is changed to: " + date);
     }
 
 

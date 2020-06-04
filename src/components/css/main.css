@@ -82,4 +82,15 @@ background: rgba(0, 0, 0, 0.3);
 
 input {
     border-width: 0;
+    width: 30%;
+    outline-color: teal;
+    font-size: 11px;
+    /* font: 400 14px 'Tenali Ramakrishna', sans-serif; */
+    /* font-size: 16px; */
+    /* font-family: 'Tenali Ramakrishna', sans-serif; */
 }
+
+/* .react-datepicker__input-container {
+    width: 50px;
+} */
+

@@ -1,7 +1,7 @@
 import { CONSTANTS } from "../actions";
 import moment from "moment";
 
-const currentDate = moment().format('MMMM d yyyy');
+const currentDate = moment().format();
 
 const initialState = {
   "card-0": {

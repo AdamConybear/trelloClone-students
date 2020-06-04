@@ -4,8 +4,8 @@ import cardsReducer from "./cardsReducer";
 import classesReducer from "./classesReducer";
 import classOrderReducer from "./classOrderReducer";
 import activeClassReducer from "./activeClassReducer";
-import { REHYDRATE, PURGE } from "redux-persist";
-import storage from "redux-persist/lib/storage"; // local storage
+// import { REHYDRATE, PURGE } from "redux-persist";
+// import storage from "redux-persist/lib/storage"; // local storage
 
 export default combineReducers({
   lists: listsReducer,
