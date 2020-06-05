@@ -9,6 +9,7 @@
     "@material-ui/pickers": "^3.2.10",
     "bootstrap": "^4.5.0",
     "date-fns": "^2.14.0",
+    "ical.js": "^1.4.0",
     "install": "^0.12.2",
     "moment": "^2.26.0",
     "npm": "^6.8.0",

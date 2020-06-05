@@ -10,6 +10,7 @@ import { slide as Menu } from 'react-burger-menu';
 import "./css/main.css";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import BurgerClass from "./BurgerClass";
+import FileUpload from "./FileUpload"
 import moment from "moment";
 
 const Thumbnails = styled.div`
@@ -139,10 +140,11 @@ const Home = ({ classes, classOrder, lists, cards, dispatch }) => {
       <div style={{marginTop: 15}}>
         <form onSubmit={handleSubmit}>
           <div>
-            <AddHeaders>Auto Fill</AddHeaders>
-            <p style={{fontSize:12}}>select file from computer button</p>
-            <p style={{fontSize:12}}>import button</p>
-            <AddHeaders>Manually Fill</AddHeaders>
+            <AddHeaders>-- Auto Fill</AddHeaders>
+            <FileUpload />
+            <p style={{fontSize:14, marginLeft: 3, opacity: 0.8, color: 'white'}}>*upload an ical file (.ics)</p>
+            {/* <p style={{fontSize:12}}>import button</p> */}
+            <AddHeaders>-- Manually Fill</AddHeaders>
           </div>
           <input
             onChange={handleChange}
