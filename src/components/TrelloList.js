@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import { editTitle, deleteList } from "../actions";
 import Icon from "@material-ui/core/Icon";
+import "./css/main.css";
 
 const ListContainer = styled.div`
   background-color: #dfe3e6;
@@ -16,14 +17,14 @@ const ListContainer = styled.div`
   margin: 0 8px 0 0;
 `;
 
-const StyledInput = styled.input`
-  width: 96%;
-  border: none;
-  outline-color: teal;
-  border-radius: 3px;
-  margin-bottom: 3px;
-  padding: 5px;
-`;
+// const StyledInput = styled.input`
+//   width: 96%;
+//   border: none;
+//   outline-color: teal;
+//   border-radius: 3px;
+//   margin-bottom: 3px;
+//   padding: 5px;
+// `;
 
 const TitleContainer = styled.div`
   width: 100%;
@@ -57,13 +58,14 @@ const TrelloList = ({ title, cards, listID, index, dispatch }) => {
   const renderEditInput = () => {
     return (
       <form onSubmit={handleFinishEditing}>
-        <StyledInput
+        <input
           type="text"
           value={listTitle}
           onChange={handleChange}
           autoFocus
           onFocus={handleFocus}
           onBlur={handleFinishEditing}
+          className="listTitle-input"
         />
       </form>
     );

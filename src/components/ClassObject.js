@@ -47,7 +47,7 @@ const ClassObject = ({ title, minDate }) => {
   }else{
     nextDate = "No date available";
   }
-  console.log("class: " + title + " has date: " + nextDate);
+  console.log("class: '" + title + "' has date: " + nextDate);
 
   return (
     <Outline>

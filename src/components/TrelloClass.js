@@ -6,11 +6,25 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
 import { sort, setActiveClass } from "../actions";
 import { Link } from "react-router-dom";
+import moment from "moment";
+import Icon from "@material-ui/core/Icon";
 
 const ListsContainer = styled.div`
   display: flex;
   flex-direction: row;
 `;
+
+const HomeIcon = styled(Icon)`
+  position: absolute;
+  left: 20px;
+  cursor: pointer;
+  color: black;
+
+  &:hover {
+    opacity: 0.6;
+  }
+`;
+const currentDate = moment().format("LL");
 
 class TrelloClass extends PureComponent {
 
@@ -52,8 +66,15 @@ class TrelloClass extends PureComponent {
     return (
       <div style={{marginLeft: 15}}>
         <DragDropContext onDragEnd={this.onDragEnd}>
-          <Link to="/">Back to Classes</Link>
-          <h2 style={{marginLeft: 20}}>{c.title}</h2>
+          {/* <Link to="/">Back to Classes</Link> */}
+          <div style={{padding: 20, fontSize: 20}}>
+            <Link to="/" style={{ textDecoration: "none"}}>
+              <HomeIcon fontSize='large'>home</HomeIcon>
+            </Link>
+            <span style={{fontWeight: 'bold', fontSize: 26, marginLeft: 35}}>{c.title}</span>
+            <span style={{position: 'absolute', right: 20, top: 20}}>{currentDate}</span>
+
+          </div>
           <Droppable droppableId="all-lists" direction="horizontal" type="list">
             {provided => (
               <ListsContainer

@@ -30,11 +30,10 @@ const HomeContainer = styled.div`
   box-sizing: border-box;
 `;
 
-const ImportTitle = styled.span`
+const AddHeaders = styled.span`
   font-size: 16px;
   // color: white;
-  // font-weight: bold;
-  font-family: Arial, Helvetica, sans-serif;
+  // font-family: Arial, Helvetica, sans-serif;
 `;
 const DateTag = styled.span`
   font-size: 20px;
@@ -44,23 +43,6 @@ const DateTag = styled.span`
   font-family: Arial, Helvetica, sans-serif;
 `;
 
-const ClassInput = styled.input`
-  width: 200px;
-  height: 30px;
-  font-size: 16px;
-  padding: 10px;
-  box-sizing: border-box;
-  border-radius: 3px;
-  border: none;
-  outline-color: teal;
-  box-shadow: 0 2px 4px black;
-  align-self: center;
-`;
-
-const FillText = styled.p`
-  font-size: 16px;
-  // color: white;
-`;
 
 const AllTitle = styled.span`
   font-size: 40px;
@@ -85,7 +67,7 @@ const ClearButton = styled(Button) `
 //shows all classes, import and add classes here
 const Home = ({ classes, classOrder, lists, cards, dispatch }) => {
 
-  const d = new Date();
+  const currentDate = moment().format("LL");
   const [newClassTitle, setNewClassTitle] = useState("");
   // const [newDelete, setDelete] = useState("");
   const [showAdd, setShowAdd] = useState(false);
@@ -147,26 +129,28 @@ const Home = ({ classes, classOrder, lists, cards, dispatch }) => {
           <ClearButton onClick= {clearState} variant="contained">Delete All Classes</ClearButton>
         </div>
       </Menu>
+      
 
     );
   };
 
   const renderCreateClass = () => {
     return (
-      <div style={{textAlign: 'center'}}>
+      <div style={{marginTop: 15}}>
         <form onSubmit={handleSubmit}>
           <div>
-            <ImportTitle>Import an iCal file</ImportTitle>
-            <p style={{fontSize:12}}>upload file button</p>
-            <p style={{fontSize:14}}>OR</p>
-            <FillText>Fill manually</FillText>
+            <AddHeaders>Auto Fill</AddHeaders>
+            <p style={{fontSize:12}}>select file from computer button</p>
+            <p style={{fontSize:12}}>import button</p>
+            <AddHeaders>Manually Fill</AddHeaders>
           </div>
-          <ClassInput
+          <input
             onChange={handleChange}
             value={newClassTitle}
             placeholder="Add a class title..."
             type="text"
             maxLength="60"
+            className="addClassInput"
             />
         </form>
       </div>
@@ -197,7 +181,7 @@ const Home = ({ classes, classOrder, lists, cards, dispatch }) => {
           if (l){
             const listCards = l.cards.map(cardID => cards[cardID]);
             listCards.map(card => {
-              console.log("date: " + card.date);
+              // console.log("date: " + card.date);
               if (count === 0){ //initialize nearest Date to the first card,
                 nearestDate = card.date;
                 count++;
@@ -209,7 +193,7 @@ const Home = ({ classes, classOrder, lists, cards, dispatch }) => {
             });
           }
         });
-        console.log("next date in the entire class is: " + nearestDate);
+        // console.log("next date in the entire class is: " + nearestDate);
       }
       
       if (c.title !== "deleted"){
@@ -232,7 +216,7 @@ const Home = ({ classes, classOrder, lists, cards, dispatch }) => {
       <HomeContainer>
         <div style={{marginBottom: 30, marginTop: 20}}>
           <AllTitle>All Classes</AllTitle>
-          <DateTag>Current Date: {d.getMonth() + 1}/{d.getDate()}</DateTag>
+          <DateTag>{currentDate}</DateTag>
         </div>
         <Thumbnails>{renderClasses()}</Thumbnails>
       </HomeContainer>

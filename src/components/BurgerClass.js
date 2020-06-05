@@ -3,16 +3,18 @@ import styled from "styled-components";
 import { editClassTitle } from "../actions";
 import Icon from "@material-ui/core/Icon";
 import { connect } from "react-redux";
+import "./css/main.css";
 
-const StyledInput = styled.input`
-  width: 100%;
-  border: none;
-  outline-color: teal;
-  border-radius: 3px;
-  margin-bottom: 3px;
-  padding: 5px;
-  left: 100px;
-`;
+
+// const StyledInput = styled.input`
+//   width: 100%;
+//   border: none;
+//   outline-color: teal;
+//   border-radius: 3px;
+//   margin-bottom: 3px;
+//   padding: 5px;
+//   left: 100px;
+// `;
 
 const DeleteButton = styled(Icon)`
   position: absolute;
@@ -48,13 +50,14 @@ const BurgerClass = ({ title, classID, dispatch }) => {
     const renderEditInput = () => {
         return (
           <form onSubmit={handleFinishEditing}>
-            <StyledInput
+            <input
               type="text"
               value={classTitle}
               onChange={handleClassChange}
               autoFocus
               onFocus={handleFocus}
               onBlur={handleFinishEditing}
+              className="burger-edit"
             />
           </form>
         );
