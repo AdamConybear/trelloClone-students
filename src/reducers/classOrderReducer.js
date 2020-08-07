@@ -1,4 +1,5 @@
 import { CONSTANTS } from "../actions";
+// import { addListByID } from "../actions";
 // import uuid from "uuidv4";
 
 // console.log(uuid());
@@ -9,6 +10,12 @@ const classOrderReducer = (state = initialState, action) => {
   switch (action.type) {
     case CONSTANTS.ADD_CLASS: {
       return [...state, `class-${action.payload.id}`];
+    }
+
+    case CONSTANTS.ADD_CLASS_WITH_LISTS: {
+      // console.log("class order reducer");
+      return [...state, `class-${action.payload.id_class}`];
+      // addListByID(`class-${action.payload.id_class}`, "Assignments");
     }
     case CONSTANTS.DELETE_CLASS: {
       const { classID } = action.payload;

@@ -59,3 +59,22 @@ export const deleteList = listID => {
     });
   };
 };
+
+export const addListByID = (classID, title) => {
+  const id = uuid();
+  return {
+    type: CONSTANTS.ADD_LIST_BY_ID,
+    payload: { title, classID, id }
+  };
+};
+
+export const setList = (listID, newTitle, classID) => {
+  return {
+    type: CONSTANTS.SET_LIST,
+    payload: {
+      listID,
+      newTitle,
+      classID,
+    }
+  };
+};

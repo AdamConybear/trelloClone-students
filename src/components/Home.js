@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -31,14 +31,15 @@ const HomeContainer = styled.div`
   box-sizing: border-box;
 `;
 
-const AddHeaders = styled.span`
-  font-size: 16px;
+const AddHeaders = styled.li`
+  font-size: 18px;
   // color: white;
   // font-family: Arial, Helvetica, sans-serif;
 `;
 const DateTag = styled.span`
   font-size: 20px;
-  color: white;
+  font-weight: bold;
+  color: #907163;
   position: absolute;
   right: 20px;
   font-family: Arial, Helvetica, sans-serif;
@@ -47,9 +48,10 @@ const DateTag = styled.span`
 
 const AllTitle = styled.span`
   font-size: 40px;
-  color: white;
+  color: #907163;
   font-weight: bold;
   margin-top: 50px;
+  padding: 10px;
 
 `;
 
@@ -64,6 +66,33 @@ const ClearButton = styled(Button) `
 
 `;
 
+function getWindowDimensions() {
+  const { innerWidth: width, innerHeight: height } = window;
+  return {
+    width,
+    height
+  };
+}
+
+export function useWindowDimensions() {
+  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowDimensions(getWindowDimensions());
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return windowDimensions;
+}
+
+
+
+
+
 
 //shows all classes, import and add classes here
 const Home = ({ classes, classOrder, lists, cards, dispatch }) => {
@@ -73,6 +102,8 @@ const Home = ({ classes, classOrder, lists, cards, dispatch }) => {
   // const [newDelete, setDelete] = useState("");
   const [showAdd, setShowAdd] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
+  const { height, width } = useWindowDimensions();
+ 
 
   const handleChange = e => {
     setNewClassTitle(e.target.value);
@@ -81,6 +112,8 @@ const Home = ({ classes, classOrder, lists, cards, dispatch }) => {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(addClass(newClassTitle));
+    // console.log(classOrder);
+
   };
 
   const clearState = () => {
@@ -104,6 +137,13 @@ const Home = ({ classes, classOrder, lists, cards, dispatch }) => {
     }else{
       setShowEdit(true);
     }
+  }
+
+  const screenDateChange = () => {
+    if (width < 500){
+      return moment(currentDate).format("MMM D"); //formatted date for mobile
+    }
+    return currentDate;
   }
 
 
@@ -140,20 +180,24 @@ const Home = ({ classes, classOrder, lists, cards, dispatch }) => {
       <div style={{marginTop: 15}}>
         <form onSubmit={handleSubmit}>
           <div>
-            <AddHeaders>-- Auto Fill</AddHeaders>
-            <FileUpload />
-            <p style={{fontSize:14, marginLeft: 3, opacity: 0.8, color: 'white'}}>*upload an ical file (.ics)</p>
-            {/* <p style={{fontSize:12}}>import button</p> */}
-            <AddHeaders>-- Manually Fill</AddHeaders>
+            <AddHeaders>Auto Fill</AddHeaders>
+            <div>
+              <FileUpload />
+              {/* <p style={{fontSize:12, marginLeft: 3, opacity: 0.8, color: 'white'}}>*upload an ical file (.ics)</p> */}
+              {/* <p style={{fontSize:12}}>import button</p> */}
+            </div>
+            <AddHeaders>Manually Fill</AddHeaders>
           </div>
-          <input
-            onChange={handleChange}
-            value={newClassTitle}
-            placeholder="Add a class title..."
-            type="text"
-            maxLength="60"
-            className="addClassInput"
-            />
+          <div style={{textAlign:'center'}}>
+            <input
+              onChange={handleChange}
+              value={newClassTitle}
+              placeholder="Add a class title..."
+              type="text"
+              maxLength="60"
+              className="addClassInput"
+              />
+          </div>
         </form>
       </div>
     );
@@ -218,7 +262,7 @@ const Home = ({ classes, classOrder, lists, cards, dispatch }) => {
       <HomeContainer>
         <div style={{marginBottom: 30, marginTop: 20}}>
           <AllTitle>All Classes</AllTitle>
-          <DateTag>{currentDate}</DateTag>
+          <DateTag>{screenDateChange()}</DateTag>
         </div>
         <Thumbnails>{renderClasses()}</Thumbnails>
       </HomeContainer>

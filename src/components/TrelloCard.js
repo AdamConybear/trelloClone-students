@@ -33,31 +33,6 @@ const EditButton = styled(Icon)`
   }
 `;
 
-// const DateButton = styled(Icon)`
-//   position: absolute;
-//   display: inline;
-//   left: 5px;
-//   bottom:5px;
-//   opacity: 0.5;
-//   cursor:pointer
-//   &:hover {
-//     opacity: 0.8;
-//   }
-//   float: left;
-//   margin-right: 10px;
-//   margin-left: 10px;
-// `;
-
-// const DateText = styled.div `
-//   display: inline;
-//   position: absolute;
-//   left: 35px;
-//   bottom: 3px;
-//   font-size: 14px;
-//   color: #909090;
-
-// `;
-
 const DeleteButton = styled(Icon)`
   position: absolute;
   display: none;

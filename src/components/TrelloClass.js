@@ -18,7 +18,7 @@ const HomeIcon = styled(Icon)`
   position: absolute;
   left: 20px;
   cursor: pointer;
-  color: black;
+  color: #907163;
 
   &:hover {
     opacity: 0.6;
@@ -59,7 +59,7 @@ class TrelloClass extends PureComponent {
     const { classID } = match.params;
     const c = classes[classID];
     if (!c) {
-      return <p>c not found</p>;
+      return <p>class not found</p>;
     }
     const listOrder = c.lists;
 
@@ -71,8 +71,8 @@ class TrelloClass extends PureComponent {
             <Link to="/" style={{ textDecoration: "none"}}>
               <HomeIcon fontSize='large'>home</HomeIcon>
             </Link>
-            <span style={{fontWeight: 'bold', fontSize: 26, marginLeft: 35}}>{c.title}</span>
-            <span style={{position: 'absolute', right: 20, top: 20}}>{currentDate}</span>
+            <span style={{fontWeight: 'bold', fontSize: 26, marginLeft: 35, color: '#907163'}}>{c.title}</span>
+            <span style={{position: 'absolute', right: 20, top: 20, color:'#907163'}}>{currentDate}</span>
 
           </div>
           <Droppable droppableId="all-lists" direction="horizontal" type="list">

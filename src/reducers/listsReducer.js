@@ -4,9 +4,21 @@ const initialState = {
   "list-0": {
     id: "list-0",
     cards: ["card-0"],
-    title: "myList",
+    title: "Assignments",
     class: "class-0"
-  }
+  },
+  "list-1": {
+    id: "list-1",
+    cards: ["card-1"],
+    title: "Quizzes",
+    class: "class-0"
+  },
+  "list-2": {
+    id: "list-2",
+    cards: ["card-2"],
+    title: "Exams",
+    class: "class-0"
+  },
 };
 
 const listsReducer = (state = initialState, action) => {
@@ -18,6 +30,20 @@ const listsReducer = (state = initialState, action) => {
         id: `list-${id}`,
         cards: []
       };
+
+      const newState = { ...state, [`list-${id}`]: newList };
+
+      return newState;
+    }
+
+    case CONSTANTS.ADD_LIST_BY_ID: {
+      const {title, id} = action.payload;
+      const newList = {
+        title: title,
+        id: `list-${id}`,
+        cards:[],
+        // class: classID
+      }
 
       const newState = { ...state, [`list-${id}`]: newList };
 
@@ -89,6 +115,18 @@ const listsReducer = (state = initialState, action) => {
       list.title = newTitle;
       return { ...state, [listID]: list };
     }
+
+    case CONSTANTS.SET_LIST: {
+      const { listID, newTitle, classID } = action.payload;
+
+      const list = state[listID];
+      list.id = listID;
+      list.title = newTitle;
+      list.class = classID;
+      list.cards = [];
+      return { ...state, [listID]: list };
+    }
+
 
     case CONSTANTS.DELETE_LIST: {
       const { listID } = action.payload;

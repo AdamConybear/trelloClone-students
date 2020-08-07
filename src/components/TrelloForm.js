@@ -91,46 +91,6 @@ const TrelloForm = React.memo(
 
     return list ? renderFormList() : renderFormCard();
 
-    // return list ? (
-    //   <Container>
-    //     <StyledCard>
-    //       <StyledTextArea
-    //         placeholder={placeholder}
-    //         autoFocus
-    //         value={text}
-    //         onChange={e => onTextChange(e)}
-    //         onBlur={closeForm}
-    //       />
-    //     </StyledCard>
-    //     <ButtonContainer>
-    //       {children}
-    //       <StyledIcon onMouseDown={closeForm}>close</StyledIcon>
-    //     </ButtonContainer>
-    //   </Container>
-    // ) : (
-    //   <Container>
-    //     <StyledCard>
-    //       <StyledTextArea
-    //         placeholder={placeholder}
-    //         autoFocus
-    //         value={text}
-    //         onChange={e => onTextChange(e)}
-    //         onBlur={closeForm}
-    //       />
-    //       <StyledDateArea
-    //         placeholder="Enter Due Date..."
-    //         autoFocus
-    //         value={date}
-    //         onChange={e => onDateChange(e)}
-    //         onBlur={closeForm}
-    //       />
-    //     </StyledCard>
-    //     <ButtonContainer>
-    //       {children}
-    //       <StyledIcon onMouseDown={closeForm}>close</StyledIcon>
-    //     </ButtonContainer>
-    //   </Container>
-    // );
   }
 );
 

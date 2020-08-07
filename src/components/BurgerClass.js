@@ -6,16 +6,6 @@ import { connect } from "react-redux";
 import "./css/main.css";
 
 
-// const StyledInput = styled.input`
-//   width: 100%;
-//   border: none;
-//   outline-color: teal;
-//   border-radius: 3px;
-//   margin-bottom: 3px;
-//   padding: 5px;
-//   left: 100px;
-// `;
-
 const DeleteButton = styled(Icon)`
   position: absolute;
   right: 35px;

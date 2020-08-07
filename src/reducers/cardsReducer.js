@@ -5,9 +5,21 @@ const currentDate = moment().format();
 
 const initialState = {
   "card-0": {
-    text: "First Entry",
+    text: "Homework goes here",
     id: `card-0`,
     list: "list-0",
+    date: currentDate,
+  },
+  "card-1": {
+    text: "Quizzes go here",
+    id: `card-1`,
+    list: "list-1",
+    date: currentDate,
+  },
+  "card-2": {
+    text: "Exams go here",
+    id: `card-2`,
+    list: "list-2",
     date: currentDate,
   }
 };

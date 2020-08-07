@@ -9,22 +9,13 @@ import Icon from "@material-ui/core/Icon";
 import "./css/main.css";
 
 const ListContainer = styled.div`
-  background-color: #dfe3e6;
+  background-color: #D59A69;
   border-radius: 3px;
   width: 300px;
   padding: 8px;
   height: 100%;
   margin: 0 8px 0 0;
 `;
-
-// const StyledInput = styled.input`
-//   width: 96%;
-//   border: none;
-//   outline-color: teal;
-//   border-radius: 3px;
-//   margin-bottom: 3px;
-//   padding: 5px;
-// `;
 
 const TitleContainer = styled.div`
   width: 100%;
@@ -45,6 +36,7 @@ const DeleteButton = styled(Icon)`
 `;
 
 const ListTitle = styled.h4`
+  color: white;
   transition: background 0.3s ease-in;
   ${TitleContainer}:hover & {
     background: #ccc;

@@ -2,20 +2,26 @@ import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import moment from "moment";
+// import { addListByID} from "../actions";
 
 const Outline = styled.div`
   height: 300px;
   width: 300px;
-  background: #f0ead6;
+  // background: #e7a083; 
+  background: #D59A69
   padding: 10px;
   margin: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  border-radius: 3px;
+  border-radius: 50px;
   box-shadow: 0 2px 4px black;
   position: relative;
+  transition: transform .2s; /* Animation */
+  &:hover{
+    transform: scale(1.05)
+  }
 
 `;
 
@@ -24,30 +30,33 @@ const ClassContent = styled.div `
 `;
 
 const Title = styled.h4`
-  color: black;
+  color: #EAE7DC;
   font-size: 24px;
   align-self: center;
 `;
 
 const Due = styled.div`
-  color: black;
+  color: #EAE7DC;
   font-size: 14px;
   text-decoration: none;
   position: absolute;
-  bottom: 10px;
-  left: 10px;
+  bottom: 25px;
+  left: 25px;
+  // text-align:center;
 `;
 
 
-const ClassObject = ({ title, minDate }) => {
+const ClassObject = ({ title, minDate, dispatch, classID }) => {
   
   let nextDate;
   if(minDate){
     nextDate = moment(minDate).format("MMM Do");
   }else{
-    nextDate = "No date available";
+    nextDate = "N/A";
   }
   console.log("class: '" + title + "' has date: " + nextDate);
+  
+  // dispatch(addListByID(classID, "Assignments"));
 
   return (
     <Outline>

@@ -5,7 +5,7 @@
 /* Our sidebar item styling */
 /* text-decoration: none; */
 margin-bottom: 10px;
-color: #d1d1d1;
+color: #907163;
 transition: color 0.2s;
 outline: none;
 }
@@ -35,8 +35,8 @@ top: 20px;
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-/* background: #373a47; */
-background: white;
+background: #907163;
+/* background: white; */
 }
 
 /* Position and sizing of clickable cross button */
@@ -47,13 +47,13 @@ width: 24px;
 
 /* Color/shape of close button cross */
 .bm-cross {
-background: #bdc3c7;
+background: #907163;
 }
 
 /* General sidebar styles */
 .bm-menu {
-/* background: #373a47; */
-background: #42596A;
+background: #EAE7DC;
+/* background: #42596A; og */
 padding: 2.5em 1.5em 0;
 font-size: 1.15em;
 }
@@ -80,14 +80,6 @@ background: rgba(0, 0, 0, 0.3);
     padding : 5px;
 }
 
-/* input {
-    border-width: 0;
-    width: 30%;
-    /* outline-color: teal; */
-    /* outline: none; */
-    /* border-bottom: 1px solid teal; */
-    /* font-size: 11px; */
-/* } */
 
 .date-picker {
     border-width: 0;
@@ -97,13 +89,13 @@ background: rgba(0, 0, 0, 0.3);
 }
 
 .date-picker:focus {
-    border-bottom: 2px solid teal;
+    border-bottom: 2px solid #D59A69;
 }
 
 
 .addClassInput {
     -webkit-appearance: none;
-    color: white;
+    color: #ab8574;
     font-size: 14px;
     position: relative;
     margin: auto;
@@ -116,16 +108,16 @@ background: rgba(0, 0, 0, 0.3);
     border-radius: 0;
     /* width: 280px; */
     height: 53px;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #ab8574;
     outline: none;
 }
 
 .addClassInput:focus {
-    border-bottom: 1px solid teal;
+    border-bottom: 1px solid #907163;
 }
 
 .addClassInput::placeholder {
-    color: white;
+    color: #ab8574;
 }
 
 .burger-edit {
@@ -134,13 +126,13 @@ background: rgba(0, 0, 0, 0.3);
     border: none;
     /* outline-color: teal; */
     outline: none;
-    border-bottom: 1px solid teal;
+    border-bottom: 1px solid #907163;
     /* border-radius: 3px; */
     /* margin-bottom: 3px; */
     padding: 5px;
     background: none;
     transition: all .15s ease;
-    color: white;
+    color: #907163;
     /* margin-top: 20px; */
     /* left: 100px; */
 }
@@ -157,12 +149,12 @@ background: rgba(0, 0, 0, 0.3);
     width: 96%;
     border: none;
     outline: none;
-    border-bottom: 2px solid teal;
+    border-bottom: 2px solid white;
     /* margin-bottom: 3px; */
     padding: 5px;
     background: none;
     transition: all .15s ease;
-    color: black;
+    color: white;
     margin-bottom: 13px;
     margin-top: 20px;
 }

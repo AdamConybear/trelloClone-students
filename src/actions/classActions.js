@@ -26,9 +26,21 @@ export const deleteClass = (classID) => {
 export const editClassTitle = (classID, newTitle) => {
   return {
     type: CONSTANTS.EDIT_CLASS_TITLE,
-    payload: {
-      classID,
-      newTitle
-    }
+    payload: { classID, newTitle }
   };
 };
+
+export const addClassWithLists = (title) => {
+  const id_class = uuid();
+  const id_list1 = uuid();
+  const id_list2 = uuid();
+  const id_list3 = uuid();
+
+  return {
+    type: CONSTANTS.ADD_CLASS_WITH_LISTS,
+    payload: {title, id_class, id_list1, id_list2, id_list3}
+
+  }
+
+
+}
