@@ -145,25 +145,22 @@ const FileUpload = ({classes, classOrder, lists, cards, dispatch}) => {
                                 let text = value[i][0];
                                 let date = moment(value[i][1]).format();
                                 if (l.title === "Exams"){
-                                    if (text.includes("Exam")){
+                                    if (text.includes("Exam") || text.includes("exam")){
                                         console.log("belongs in exam list");
                                         dispatch(addCard(listID,text,date));
                                     }
                                 }else if(l.title === "Quizzes"){
-                                    if(text.includes("Quiz")){
+                                    if(text.includes("Quiz") || text.includes("quiz")){
                                         console.log("belongs in quiz list");
                                         dispatch(addCard(listID,text,date));
                                     }
                                 }else if (l.title === "Assignments"){
-                                    if(text.includes("Exam") || text.includes("Quiz")){
+                                    if(text.includes("Exam") || text.includes("Quiz") || text.includes("quiz") || text.includes("exam")){
                                     }else{                        
                                         console.log("belongs in assignment list");           
                                         dispatch(addCard(listID,text,date));      
                                     }
                                 }
-                                // console.log("text: " + text);
-                                // console.log("date: " + date);
-                                // dispatch(addCard(listID,text,date));
                             }
                         }
                     }
