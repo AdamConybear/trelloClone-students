@@ -10,3 +10,5 @@
 - styled-components for CSS like tags
 - react-textarea-autosize for user entered text input
 - react-burger-menu for a dynamic sidebar
+
+### Demo: https://adamconybear.com/trelloClone-students/#/
